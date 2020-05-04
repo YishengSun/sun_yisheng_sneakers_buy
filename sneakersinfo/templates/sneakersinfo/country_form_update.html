@@ -1,0 +1,15 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Update Country
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ country.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Country</button>
+    </form>
+{% endblock %}

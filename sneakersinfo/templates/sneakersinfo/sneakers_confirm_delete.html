@@ -1,0 +1,19 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Delete Sneakers
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ sneakers.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            sneakers {{ sneakers }}?
+        </p>
+        <a href="{{ sneakers.get_absolute_url }}">Cancel</a>
+        <button sneakers="submit">Delete Sneakers</button>
+    </form>
+{% endblock %}

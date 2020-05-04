@@ -1,0 +1,15 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Update Sneakers
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ sneakers.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Sneakers</button>
+    </form>
+{% endblock %}

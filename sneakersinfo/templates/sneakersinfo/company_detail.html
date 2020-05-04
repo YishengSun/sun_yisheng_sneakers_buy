@@ -1,0 +1,57 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Company - {{ company }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ company }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_company %}
+
+        <li>
+            <a href="{{ company.get_update_url }}"
+               class="button">
+                Edit Company
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_company %}
+
+         <li>
+            <a href="{{ company.get_delete_url }}"
+               class="button">
+                Delete Company
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Company Name:</th>
+                <td>{{ company.company_name }}</td>
+            </tr>
+            <tr>
+                <th>Company Country:</th>
+                <td><a href="{{ country.get_absolute_url }}">{{ company.company_country }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Sneakers</h3>
+        <ul>
+            {% for sneakers in sneakers_list %}
+                <li>
+                    <a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no sneakers for this company.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

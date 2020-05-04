@@ -1,0 +1,54 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Agency - {{ agency }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ agency }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_agency %}
+        <li>
+            <a href="{{ agency.get_update_url }}"
+            class="button">
+                Edit Agency
+            </a>
+        </li>
+        {% endif %}
+        {% if perms.sneakersinfo.delete_agency %}
+
+        <li>
+            <a href="{{ agency.get_delete_url }}"
+            class="button">
+                Delete Agency
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Agency Name:</th>
+                <td>{{ agency.agency_name }}</td>
+            </tr>
+            <tr>
+                <th>Agency Country:</th>
+                <td><a href="{{ country.get_absolute_url }}">{{ agency.agency_country }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Orders</h3>
+        <ul>
+            {% for order in order_list %}
+                <li>
+                    <a href="{{ order.get_absolute_url }}">{{ order }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no order for this agency.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

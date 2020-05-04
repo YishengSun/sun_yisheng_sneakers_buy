@@ -1,0 +1,15 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Update Year
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ year.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Year</button>
+    </form>
+{% endblock %}

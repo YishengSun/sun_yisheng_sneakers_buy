@@ -1,0 +1,25 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Type
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Type</h2>
+        <p>You may not delete type {{ type }}. This
+        type is currently assigned to the following
+        sneakers:
+        </p>
+
+        <ul>
+            {% for sneakers in sneakers %}
+            <li><a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'sneakersinfo_type_list_urlpattern' %}">Type List</a>
+        </p>
+    </div>
+{% endblock %}

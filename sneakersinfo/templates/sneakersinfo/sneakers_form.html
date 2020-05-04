@@ -1,0 +1,14 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Create Sneakers
+{% endblock %}
+
+{% block content %}
+    <form action = "{% url 'sneakersinfo_sneakers_create_urlpattern' %}"
+          method = "post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Sneakers</button>
+    </form>
+{% endblock %}

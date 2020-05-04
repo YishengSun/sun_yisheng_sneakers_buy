@@ -1,0 +1,27 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Country List
+{% endblock %}
+
+{% block content %}
+    <h2>Country List</h2>
+    {% if perms.sneakersinfo.add_country %}
+
+        <div>
+            <a href="{% url 'sneakersinfo_country_create_urlpattern' %}"
+               class="button button-primary" >
+                Create New Country
+            </a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for country in country_list %}
+            <li>
+                <a href="{{ country.get_absolute_url }}">{{ country }}</a>
+            </li>
+        {% empty %}
+            <li>There are currently no country available</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

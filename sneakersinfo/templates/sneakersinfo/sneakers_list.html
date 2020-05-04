@@ -1,0 +1,27 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Sneakers List
+{% endblock %}
+
+{% block content %}
+    <h2>Sneakers List</h2>
+        {% if perms.sneakersinfo.add_sneakers %}
+
+        <div>
+            <a href="{% url 'sneakersinfo_sneakers_create_urlpattern' %}"
+               class="button button-primary" >
+                Create New Sneakers
+            </a>
+        </div>
+        {% endif %}
+    <ul>
+        {% for sneakers in sneakers_list %}
+            <li>
+                <a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a>
+            </li>
+        {% empty %}
+            <li>There are currently no sneakers available</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

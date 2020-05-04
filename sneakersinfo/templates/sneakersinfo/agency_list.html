@@ -1,0 +1,27 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Agency List
+{% endblock %}
+
+{% block org_content %}
+    <h2>Agency List</h2>
+    {% if perms.sneakersinfo.add_agency %}
+
+    <div>
+        <a href="{% url 'sneakersinfo_agency_create_urlpattern' %}"
+            class="button button-primary" >
+            Create New Agency
+        </a>
+    </div>
+    {% endif %}
+    <ul>
+        {% for agency in agency_list %}
+            <li>
+                <a href="{{ agency.get_absolute_url }}">{{ agency }}</a>
+            </li>
+        {% empty %}
+            <li>There are currently no agency available</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Sneakers - {{ sneakers }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ sneakers }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_sneakers %}
+
+        <li>
+            <a href="{{ sneakers.get_update_url }}"
+               class="button">
+                Edit Sneakers
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_sneakers %}
+
+        <li>
+            <a href="{{ sneakers.get_delete_url }}"
+               class="button">
+                Delete Sneakers
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Sneakers Name:</th>
+                <td>{{ sneakers.sneakers_name }}</td>
+            </tr>
+             <tr>
+                <th>Sneakers img:</th>
+                <td><img src="{{ sneakers.sneakers_url }}" height="100" width="175"/></td>
+            </tr>
+             <tr>
+                <th>Sneakers year:</th>
+                <td><a href="{{ year.get_absolute_url }}">{{ sneakers.publish_year }}</a></td>
+            </tr>
+             <tr>
+                <th>Sneakers type:</th>
+                 <td><a href="{{ type.get_absolute_url }}">{{ sneakers.type }}</a></td>
+            </tr>
+            <tr>
+                <th>Sneakers company:</th>
+                <td><a href="{{ company.get_absolute_url }}">{{ sneakers.company }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Orders</h3>
+        <ul>
+            {% for order in order_list %}
+                <li>
+                    <a href="{{ order.get_absolute_url }}">{{ order }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no order for this kind of sneakers.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

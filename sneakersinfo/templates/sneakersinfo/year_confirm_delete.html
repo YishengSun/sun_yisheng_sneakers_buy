@@ -1,0 +1,19 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Delete Year
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ year.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            year {{ year }}?
+        </p>
+        <a href="{{ year.get_absolute_url }}">Cancel</a>
+        <button type="submit">Delete Year</button>
+    </form>
+{% endblock %}

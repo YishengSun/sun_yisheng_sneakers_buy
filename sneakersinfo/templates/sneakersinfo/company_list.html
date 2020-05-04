@@ -1,0 +1,27 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Company List
+{% endblock %}
+
+{% block content %}
+    <h2>Company List</h2>
+        {% if perms.sneakersinfo.add_company %}
+
+        <div>
+            <a href="{% url 'sneakersinfo_company_create_urlpattern' %}"
+               class="button button-primary" >
+                Create New Company
+            </a>
+        </div>
+        {% endif %}
+    <ul>
+        {% for company in company_list %}
+            <li>
+                <a href="{{ company.get_absolute_url }}">{{ company }}</a>
+            </li>
+        {% empty %}
+            <li>There are currently no company available</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

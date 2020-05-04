@@ -1,0 +1,25 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Year
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Year</h2>
+        <p>You may not delete year {{ year }}. This
+        year is currently assigned to the following
+        sneakers:
+        </p>
+
+        <ul>
+            {% for sneakers in sneakers %}
+            <li><a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'sneakersinfo_year_list_urlpattern' %}">Year List</a>
+        </p>
+    </div>
+{% endblock %}

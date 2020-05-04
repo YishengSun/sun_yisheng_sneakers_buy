@@ -1,0 +1,31 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Country
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Country</h2>
+        <p>You may not delete country {{ country }}. This
+        country is currently assigned to the following
+        agencies or companies:
+        </p>
+
+        <ul>
+            {% for agency in agencies %}
+            <li><a href="{{ agency.get_absolute_url }}">{{ agency }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for company in companies %}
+            <li><a href="{{ company.get_absolute_url }}">{{ company }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'sneakersinfo_country_list_urlpattern' %}">Country List</a>
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Order - {{ order }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ order }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_order %}
+
+        <li>
+            <a href="{{ order.get_update_url }}"
+               class="button">
+                Edit Order
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_order %}
+
+        <li>
+            <a href="{{ order.get_delete_url }}"
+               class="button">
+                Delete Order
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Order Date:</th>
+                <td>{{ order.date }}</td>
+            </tr>
+            <tr>
+                <th>Order Quantity:</th>
+                <td>{{ order.order_quantity }}</td>
+            </tr>
+            <tr>
+                <th>Order buyer(agency):</th>
+                <td><a href="{{ agency.get_absolute_url }}">{{ order.agency }}</a></td>
+            </tr>
+            <tr>
+                <th>Sneakers Name:</th>
+                <td><a href="{{ sneakers.get_absolute_url }}">{{ order.sneakers }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+{% endblock %}

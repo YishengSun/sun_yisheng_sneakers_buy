@@ -1,0 +1,28 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Type List
+{% endblock %}
+
+{% block content %}
+    <h2>Type List</h2>
+        {% if perms.sneakersinfo.add_type %}
+
+        <div>
+            <a href="{% url 'sneakersinfo_type_create_urlpattern' %}"
+               class="button button-primary" >
+                Create New Type
+            </a>
+        </div>
+        {% endif %}
+    <ul>
+        {% for type in type_list %}
+            <li>
+                <a href="{{ type.get_absolute_url }}">{{ type }}</a>
+            </li>
+        {% empty %}
+            <li>There are currently no type available</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

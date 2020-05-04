@@ -1,0 +1,53 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Year - {{ year }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ year }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_year %}
+
+        <li>
+            <a href="{{ year.get_update_url }}"
+               class="button">
+                Edit Year
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_year %}
+
+        <li>
+            <a href="{{ year.get_delete_url }}"
+               class="button">
+                Delete Year
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Year Name:</th>
+                <td>{{ year.year_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Sneakers</h3>
+        <ul>
+            {% for sneakers in sneakers_list %}
+                <li>
+                    <a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no sneakers for this year.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Country - {{ country }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ country }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_country %}
+
+        <li>
+            <a href="{{ country.get_update_url }}"
+               class="button">
+                Edit Country
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_country %}
+        <li>
+            <a href="{{ country.get_delete_url }}"
+               class="button">
+                Delete Country
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Country Name:</th>
+                <td>{{ country.country_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Agencies</h3>
+
+        <ul>
+            {% for agency in agency_list %}
+                <li>
+                    <a href="{{ agency.get_absolute_url }}">{{ agency }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no agency in this country.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Companies</h3>
+        <ul>
+            {% for company in company_list %}
+                <li>
+                    <a href="{{ company.get_absolute_url }}">{{ company }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no company in this country.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

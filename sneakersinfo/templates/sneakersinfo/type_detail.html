@@ -1,0 +1,52 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Type - {{ type }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ type }}</h2>
+    <ul>
+        {% if perms.sneakersinfo.update_type %}
+
+        <li>
+            <a href="{{ type.get_update_url }}"
+               class="button">
+                Edit Type
+            </a>
+        </li>
+        {% endif %}
+
+        {% if perms.sneakersinfo.delete_type %}
+        <li>
+            <a href="{{ type.get_delete_url }}"
+               class="button">
+                Delete Type
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Type Name:</th>
+                <td>{{ type.type_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Sneakers</h3>
+        <ul>
+            {% for sneakers in sneakers_list %}
+                <li>
+                    <a href="{{ sneakers.get_absolute_url }}">{{ sneakers }}</a>
+                </li>
+            {% empty %}
+                <li>There are currently no sneakers for this type.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

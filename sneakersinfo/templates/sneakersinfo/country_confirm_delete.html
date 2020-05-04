@@ -1,0 +1,19 @@
+{% extends 'sneakersinfo/base.html' %}
+
+{% block title %}
+    Delete Country
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ country.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            country {{ country }}?
+        </p>
+        <a href="{{ country.get_absolute_url }}">Cancel</a>
+        <button country="submit">Delete Country</button>
+    </form>
+{% endblock %}
